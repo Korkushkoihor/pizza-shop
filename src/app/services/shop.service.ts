@@ -1,15 +1,38 @@
-import { Injectable, signal, Signal } from '@angular/core';
-import { Pizzeria } from '../types/pizzeria.interface';
+import {
+  computed,
+  Injectable,
+  signal,
+  Signal,
+  WritableSignal,
+} from '@angular/core';
+import { Shop } from '../types/shop.interface';
 
-import pizzerias from '../../../public/pizzerias.json';
+import _shopList from '../../../public/pizzerias.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopService {
-  public getShopList(): Signal<Pizzeria[]> {
-    const shopList = pizzerias as Pizzeria[];
+  private shopFromStorage = localStorage.getItem('selectedShop')
+    ? JSON.parse(localStorage.getItem('selectedShop')!)
+    : null;
+  private _selectedShop: WritableSignal<Shop | null> = signal(
+    this.shopFromStorage
+  );
+  public selectedShop: Signal<Shop | null> = computed(() =>
+    this._selectedShop()
+  );
+  public shopList = signal(_shopList as Shop[]);
 
-    return signal(shopList);
+  public selectShop(shop: Shop) {
+    this._selectedShop.set(shop);
+
+    localStorage.setItem('selectedShop', JSON.stringify(shop));
+  }
+
+  public clearSelectedShop() {
+    this._selectedShop.set(null);
+
+    localStorage.removeItem('selectedShop');
   }
 }

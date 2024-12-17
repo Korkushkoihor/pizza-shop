@@ -1,6 +1,6 @@
 import { Country } from './country.type';
 
-export interface Pizzeria {
+export interface Shop {
   id: number;
   name: string;
   address: string;

@@ -1,0 +1,22 @@
+<mat-card
+  class="w-full h-full flex justify-between md:max-w-[300px] max-h-[580px]"
+  appearance="raised"
+>
+  <mat-card-header>
+    <mat-card-title> {{ pizza()?.name }}</mat-card-title>
+    <mat-card-subtitle>{{ pizza()?.description }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    class="h-full object-cover mt-4"
+    mat-card-image
+    [src]="pizza()?.image_url"
+    alt="photo of pizza"
+  />
+  <mat-card-actions class="mt-4 flex justify-between">
+    <span> {{ pizza()?.price }} $ </span>
+
+    <button (click)="pizzasService.addPizzaToCart(pizza()!)" mat-button>
+      Add to Cart
+    </button>
+  </mat-card-actions>
+</mat-card>

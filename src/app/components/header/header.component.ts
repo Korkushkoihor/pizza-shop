@@ -12,6 +12,6 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   private pizzasService = inject(PizzasService);
   protected selectedCount: Signal<number> = computed(
-    () => this.pizzasService.getSelectedPizzas()().length
+    () => this.pizzasService.selectedPizzas().length
   );
 }

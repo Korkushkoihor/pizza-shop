@@ -1,21 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { Pizza } from '../types/pizza.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { PizzasService } from '../services/pizzas.service';
+import { MatIconModule } from '@angular/material/icon';
+import { PizzaItemComponent } from '../components/pizza-item/pizza-item.component';
 
 @Component({
   selector: 'app-pizza-selection',
-  imports: [
-    CommonModule,
-    RouterLink,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [RouterLink, MatIconModule, PizzaItemComponent],
   templateUrl: './pizza-selection.component.html',
 })
 export class PizzaSelectionComponent {
