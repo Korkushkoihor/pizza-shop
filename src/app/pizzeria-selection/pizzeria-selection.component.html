@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let item of pizzerias">
+    {{ item?.name }}
+
+    <a [routerLink]="[item.id]">select pizzeria</a>
+  </li>
+</ul>
