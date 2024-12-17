@@ -7,10 +7,11 @@ import { ShopService } from '../services/shop.service';
 import { CartTableComponent } from './cart-table/cart-table.component';
 import { CalculatedCartPizza } from '../types/calculated-cart-pizza.interface';
 import { PizzasService } from '../services/pizzas.service';
+import { ConfirmOrderComponent } from "./confirm-order/confirm-order.component";
 
 @Component({
   selector: 'app-cart',
-  imports: [MatIconModule, RouterModule, MatButtonModule, CartTableComponent],
+  imports: [MatIconModule, RouterModule, MatButtonModule, CartTableComponent, ConfirmOrderComponent],
   templateUrl: './cart.component.html',
 })
 export class CartComponent {
