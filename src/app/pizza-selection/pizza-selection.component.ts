@@ -1,29 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import pizzas from '../../../public/pizza_templates.json';
+import { Component, inject } from '@angular/core';
 import { Pizza } from '../types/pizza.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { PizzasService } from '../services/pizzas.service';
 
 @Component({
   selector: 'app-pizza-selection',
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule,
+    RouterLink,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './pizza-selection.component.html',
-  styleUrl: './pizza-selection.component.scss',
 })
-export class PizzaSelectionComponent implements OnInit {
-  pizzas: Pizza[] = [];
-
-  constructor(private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.getPizzasForShop(+this.route.snapshot.params['shopId']);
-  }
-
-  private getPizzasForShop(shopId: number) {
-    this.pizzas = (pizzas as Pizza[]).filter((_pizza: Pizza) =>
-      _pizza.available_in_pizzerias.some(
-        (_shopId: number) => _shopId === shopId
-      )
-    );
-  }
+export class PizzaSelectionComponent {
+  private route = inject(ActivatedRoute);
+  protected pizzasService = inject(PizzasService);
+  protected readonly pizzas = this.pizzasService.getPizzasPerShop(
+    +this.route.snapshot.params['shopId']
+  );
 }

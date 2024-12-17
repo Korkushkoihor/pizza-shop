@@ -1,1 +1,3 @@
-<p>cart works!</p>
+@for (item of pizzas(); track $index) {
+<li>{{ item?.name }}</li>
+}

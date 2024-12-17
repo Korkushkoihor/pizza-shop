@@ -1,0 +1,24 @@
+<div
+  class="flex h-[80px] bg-red-100 p-4 justify-between items-center shadow-md sticky top-0 z-50"
+>
+  <img
+    routerLink="/"
+    class="size-12 cursor-pointer"
+    src="pizza-logo.png"
+    alt="pizza"
+  />
+
+  <p class="text-pink-00">Welcome To Our Fastest Pizza Delivery</p>
+
+  <div routerLink="cart" class="relative" [class.invisible]="!selectedCount()">
+    <button class="!shadow-none" mat-fab>
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
+    <span
+      class="absolute top-[-2px] right-[-10px] rounded-full bg-red-700 text-white h-6 w-6 flex items-center justify-center z-[100]"
+    >
+      {{ selectedCount() }}
+    </span>
+  </div>
+</div>

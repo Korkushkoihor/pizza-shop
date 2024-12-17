@@ -1,5 +1,39 @@
-<a routerLink="/shop-list">Go Back To Pizzeria Selection</a>
+<div class="inline-block m-4">
+  <a routerLink="/shop-list" class="flex items-center">
+    <mat-icon
+      [inline]="true"
+      aria-hidden="false"
+      fontIcon="arrow_back"
+      class="size-2 m-2"
+    ></mat-icon>
+    Go Back To Pizzeria Selection (this action will clear your cart)
+  </a>
+</div>
 
-<p *ngFor="let item of pizzas">
-  {{ item?.name }}
-</p>
+<div class="px-8 flex flex-col items-center">
+  <h1 class="text-2xl mb-4">Our Menu:</h1>
+  <div class="flex flex-wrap justify-center gap-4 max-w-[1000px]">
+    @for (item of pizzas(); track $index) {
+    <mat-card
+      class="w-full flex justify-between md:max-w-[300px] max-h-[580px]"
+      appearance="raised"
+    >
+      <mat-card-header>
+        <mat-card-title> {{ item?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ item?.description }}</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        class="h-full object-cover mt-4"
+        mat-card-image
+        [src]="item?.image_url"
+        alt="photo of pizza"
+      />
+      <mat-card-actions class="mt-4">
+        <button (click)="pizzasService.addPizzaToCart(item)" mat-button>
+          Add to Cart
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+</div>

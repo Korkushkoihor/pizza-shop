@@ -1,0 +1,21 @@
+<div class="p-8 flex flex-col items-center">
+  <h1 class="text-2xl mb-4">
+    Here is the list with currently working pizzerias:
+  </h1>
+  <div class="flex flex-wrap justify-center gap-4 max-w-[1000px]">
+    @for (item of shopList(); track $index) {
+    <mat-card
+      class="w-full flex justify-between md:max-w-[300px]"
+      appearance="raised"
+    >
+      <mat-card-header>
+        <mat-card-title> {{ item?.name }}</mat-card-title>
+        <mat-card-subtitle>{{ item?.address }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-button [routerLink]="[item.id]">Order Here</button>
+      </mat-card-actions>
+    </mat-card>
+    }
+  </div>
+</div>
