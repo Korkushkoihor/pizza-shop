@@ -11,9 +11,13 @@
 </div>
 
 <app-cart-table
+  [enableDelete]="true"
   [selectedShop]="selectedShop()"
   [cartPizzas]="cartPizzas()"
   (deletePizzasById)="deletePizzasById($event)"
 ></app-cart-table>
 
-<app-confirm-order [cartPizzas]="cartPizzas()" [selectedShop]="selectedShop()"></app-confirm-order>
+<app-confirm-order
+  [cartPizzas]="cartPizzas()"
+  [selectedShop]="selectedShop()"
+></app-confirm-order>

@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Shop } from '../types/shop.interface';
 import { ShopService } from '../services/shop.service';
-import { CartTableComponent } from './cart-table/cart-table.component';
+import { CartTableComponent } from '../components/cart-table/cart-table.component';
 import { CalculatedCartPizza } from '../types/calculated-cart-pizza.interface';
 import { PizzasService } from '../services/pizzas.service';
 import { ConfirmOrderComponent } from "./confirm-order/confirm-order.component";

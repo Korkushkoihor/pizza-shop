@@ -1,0 +1,8 @@
+@for (item of history; track $index) {
+<app-cart-table
+  [selectedShop]="item?.shop"
+  [cartPizzas]="item?.pizzas"
+></app-cart-table>
+
+<hr class="my-12" />
+}

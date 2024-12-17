@@ -6,10 +6,10 @@ import {
   WritableSignal,
 } from '@angular/core';
 import { Pizza } from '../types/pizza.interface';
-
-import pizzas from '../../../public/pizza_templates.json';
 import { CalculatedCartPizza } from '../types/calculated-cart-pizza.interface';
 import { Shop } from '../types/shop.interface';
+
+import pizzas from '../../../public/pizza_templates.json';
 
 @Injectable({
   providedIn: 'root',
@@ -45,12 +45,6 @@ export class PizzasService {
 
   public clearCart() {
     this.setPizzas([]);
-  }
-
-  private setPizzas(pizzas: Pizza[]) {
-    localStorage.setItem('cart', JSON.stringify(pizzas));
-
-    this._selectedPizzas.set(pizzas);
   }
 
   public getPizzasPerShop(shopId: number): Signal<Pizza[]> {
@@ -117,5 +111,11 @@ export class PizzasService {
     }
 
     return finalArray;
+  }
+
+  private setPizzas(pizzas: Pizza[]) {
+    localStorage.setItem('cart', JSON.stringify(pizzas));
+
+    this._selectedPizzas.set(pizzas);
   }
 }

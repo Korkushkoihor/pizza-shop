@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class CartTableComponent {
   public selectedShop = input<Shop>();
   public cartPizzas = input<CalculatedCartPizza[]>();
+  public enableDelete = input<boolean>(false);
   public deletePizzasById = output<number>();
 
   protected finalPrice = computed(() => {
