@@ -30,15 +30,27 @@ export class PizzasService {
 
     const latestPizzas = [...currentPizzas, pizza];
 
-    localStorage.setItem('cart', JSON.stringify(latestPizzas));
+    this.setPizzas(latestPizzas);
+  }
 
-    this._selectedPizzas.set(latestPizzas);
+  public deletePizzasById(pizzaId: number) {
+    const currentPizzas: Pizza[] = this.selectedPizzas();
+
+    const latestPizzas = currentPizzas.filter(
+      (pizza: Pizza) => pizza.id !== pizzaId
+    );
+
+    this.setPizzas(latestPizzas);
   }
 
   public clearCart() {
-    this._selectedPizzas.set([]);
+    this.setPizzas([]);
+  }
 
-    localStorage.removeItem('cart');
+  private setPizzas(pizzas: Pizza[]) {
+    localStorage.setItem('cart', JSON.stringify(pizzas));
+
+    this._selectedPizzas.set(pizzas);
   }
 
   public getPizzasPerShop(shopId: number): Signal<Pizza[]> {

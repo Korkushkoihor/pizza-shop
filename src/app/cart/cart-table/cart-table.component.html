@@ -1,0 +1,63 @@
+
+<div
+  class="font-bold px-2 sm:px-12 pt-4 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_32px] sm:grid-cols-[3fr_1fr_1fr_1fr_1fr_32px]"
+>
+  <span>Pizza Name</span>
+  <span class="text-center">Amount</span>
+  <span class="text-center">Subtotal</span>
+  <span class="text-center">Tax</span>
+  <span class="text-center">Total</span>
+  <span class="text-center"></span>
+</div>
+
+<div
+  class="px-2 sm:px-12 pt-4 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_32px] sm:grid-cols-[3fr_1fr_1fr_1fr_1fr_32px]"
+>
+  @for (item of cartPizzas(); track $index) {
+  <div
+    class="flex items-f justify-start py-2 border-b border-b-1 border-gray-400"
+  >
+    {{ item?.pizzaName }}
+  </div>
+  <div
+    class="flex items-center justify-center py-2 border-b border-b-1 border-gray-400 text-center"
+  >
+    {{ item?.amount }}
+  </div>
+  <div
+    class="flex items-center justify-center py-2 border-b border-b-1 border-gray-400 text-center"
+  >
+    {{ item?.subTotalPrice | number : "1.0-2" }} $
+  </div>
+  <div
+    class="flex items-center justify-center py-2 border-b border-b-1 border-gray-400 text-center"
+  >
+    {{ item?.haveTax ? (item?.taxPrice | number : "1.0-2") + "$" : "0$" }}
+  </div>
+  <div
+    class="flex items-center justify-center py-2 border-b border-b-1 border-gray-400 font-extrabold text-center"
+  >
+    {{ item?.totalPrice | number : "1.0-2" }} $
+  </div>
+  <span
+    class="flex items-center justify-center py-2 border-b border-b-1 border-gray-400 font-extrabold text-center"
+  >
+    <button class="!shadow-none" (click)="deletePizza(item)" mat-mini-fab>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </span>
+  }
+</div>
+
+<div
+  class="px-2 sm:px-12 pt-4 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_32px] sm:grid-cols-[3fr_1fr_1fr_1fr_1fr_32px]"
+>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div class="font-extrabold text-center">
+    {{ finalPrice() | number : "1.0-2" }} $
+  </div>
+  <span></span>
+</div>

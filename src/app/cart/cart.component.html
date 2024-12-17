@@ -1,8 +1,5 @@
 <div class="inline-block m-4">
-  <a
-    [routerLink]="['/shop-list', selectedShop()?.id]"
-    class="flex items-center"
-  >
+  <a [routerLink]="['/shop-list', selectedShop().id]" class="flex items-center">
     <mat-icon
       [inline]="true"
       aria-hidden="false"
@@ -13,38 +10,8 @@
   </a>
 </div>
 
-<div class="font-bold px-12 pt-4 grid grid-cols-[3fr_1fr_1fr_1fr_1fr]">
-  <span>Pizza Name</span>
-  <span class="text-center">Amount</span>
-  <span class="text-center">Subtotal</span>
-  <span class="text-center">Tax</span>
-  <span class="text-center">Total</span>
-</div>
-
-<div class="px-12 pt-4 grid grid-cols-[3fr_1fr_1fr_1fr_1fr]">
-  @for (item of cartPizzas(); track $index) {
-  <div class="border-b border-b-1 border-gray-400">{{ item?.pizzaName }}</div>
-  <div class="border-b border-b-1 border-gray-400 text-center">
-    {{ item?.amount }}
-  </div>
-  <div class="border-b border-b-1 border-gray-400 text-center">
-    {{ item?.subTotalPrice | number : "1.0-2" }} $
-  </div>
-  <div class="border-b border-b-1 border-gray-400 text-center">
-    {{ item?.haveTax ? (item?.taxPrice | number : "1.0-2") + "$" : "0$" }}
-  </div>
-  <div class="border-b border-b-1 border-gray-400 font-extrabold text-center">
-    {{ item?.totalPrice | number : "1.0-2" }} $
-  </div>
-  }
-</div>
-
-<div class="px-12 pt-4 grid grid-cols-[3fr_1fr_1fr_1fr_1fr]">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div class="font-extrabold text-center">
-    {{ finalPrice() | number : "1.0-2" }} $
-  </div>
-</div>
+<app-cart-table
+  [selectedShop]="selectedShop()"
+  [cartPizzas]="cartPizzas()"
+  (deletePizzasById)="deletePizzasById($event)"
+></app-cart-table>
